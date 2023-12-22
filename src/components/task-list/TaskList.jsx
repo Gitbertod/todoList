@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Task from "../task/Task"
+import DeleteTask from "../delete-task/DeleteTask";
 
 const TaskList = () => {
     const [taskInput, setTaskInput] = useState('');
@@ -27,6 +28,16 @@ const TaskList = () => {
         return
     }
 
+    const DeleteTask = () =>{
+        // taskList.map((e)=> {
+        //     if(e.id != ){
+
+        //     }
+        // })
+        // taskList.filter((e) => e != )
+
+    } 
+
     return (
         <div>
             <h1>To Do List</h1>
@@ -38,16 +49,15 @@ const TaskList = () => {
                     value={taskInput}
                 />
                 <input type="submit" value={'Add task'} />
-
-
             
                 {taskList.map((e) => {
                     return (
                         <Task
                             key={e.id}
                             task={e.tarea}
+                            taskList = {taskList}
+                            setTaskList = {setTaskList}
                         />
-
                     )
                 })}
             </form>

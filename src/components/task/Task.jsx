@@ -1,10 +1,15 @@
 import style from './task.module.css'
+import DeleteTask from '../delete-task/DeleteTask';
 
-const Task = ({task}) =>{
+const Task = ({ task, taskList,setTaskList }) => {
     return (
         <div className={style.task}>
             <p>{task}</p>
-            <button>Eliminar</button>
+            <DeleteTask
+                task={task}
+                taskList={taskList}
+                setTaskList={setTaskList}
+            />
         </div>
     )
 }
