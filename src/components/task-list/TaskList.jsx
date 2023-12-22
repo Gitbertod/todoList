@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Task from "./Task"
+import Task from "../task/Task"
 
 const TaskList = () => {
     const [taskInput, setTaskInput] = useState('');
@@ -11,20 +11,21 @@ const TaskList = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const tarea = {
-            id: Date.now(),
-            tarea: taskInput,
-            done: false
+        if(taskInput != ""){
+            
+            const tarea = {
+                id: Date.now(),
+                tarea: taskInput,
+                done: false
+            }
+            setTaskList([...taskList, tarea])
+            setTask(tarea.tarea)
+            setSend(true)
+            setTaskInput('')
         }
-
-        setTaskList([...taskList, tarea])
-        setTask(tarea.tarea)
-        setSend(true)
-        setTaskInput('')
 
         return
     }
-
 
     return (
         <div>
@@ -38,6 +39,8 @@ const TaskList = () => {
                 />
                 <input type="submit" value={'Add task'} />
 
+
+            
                 {taskList.map((e) => {
                     return (
                         <Task
