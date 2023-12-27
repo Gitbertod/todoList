@@ -7,36 +7,29 @@ const TaskList = () => {
     const [send, setSend] = useState(false)
     const [taskList, setTaskList] = useState([])
     const [task, setTask] = useState('')
+    const [check,setCheck] = useState(false)
 
+
+    taskList.map((e)=>e)
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        if(taskInput != ""){
-            
+        if (taskInput != "") {
+
             const tarea = {
                 id: Date.now(),
                 tarea: taskInput,
-                done: false
+                done: true
             }
             setTaskList([...taskList, tarea])
             setTask(tarea.tarea)
             setSend(true)
             setTaskInput('')
         }
-
+        
         return
     }
-
-    const DeleteTask = () =>{
-        // taskList.map((e)=> {
-        //     if(e.id != ){
-
-        //     }
-        // })
-        // taskList.filter((e) => e != )
-
-    } 
 
     return (
         <div>
@@ -49,14 +42,18 @@ const TaskList = () => {
                     value={taskInput}
                 />
                 <input type="submit" value={'Add task'} />
-            
+
                 {taskList.map((e) => {
                     return (
                         <Task
                             key={e.id}
+                            setTask={setTask}
                             task={e.tarea}
-                            taskList = {taskList}
-                            setTaskList = {setTaskList}
+                            done = {e.done}
+                            taskList={taskList}
+                            setTaskList={setTaskList}
+                            check = {check}
+                            setCheck = {setCheck}
                         />
                     )
                 })}
