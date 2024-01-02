@@ -1,16 +1,29 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import Task from "../task/Task"
 import DeleteTask from "../delete-task/DeleteTask";
 
 const TaskList = () => {
     const [taskInput, setTaskInput] = useState('');
     const [send, setSend] = useState(false)
-    const [taskList, setTaskList] = useState([])
+    const [taskList, setTaskList] = useState(JSON.parse(localStorage.getItem('task'))?? [])
     const [task, setTask] = useState('')
-    const [check,setCheck] = useState(false)
+
+    useEffect(()=>{
+        const obtenerLS = () =>{
+            const listaLS = localStorage.getItem('task')
+            console.log(listaLS)
+
+        }
 
 
-    taskList.map((e)=>e)
+        obtenerLS()
+    },[])
+
+    useEffect(()=>{
+        localStorage.setItem('task',JSON.stringify(taskList))
+    },[taskList])
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -19,15 +32,14 @@ const TaskList = () => {
 
             const tarea = {
                 id: Date.now(),
-                tarea: taskInput,
-                done: true
+                tarea: taskInput
             }
             setTaskList([...taskList, tarea])
             setTask(tarea.tarea)
             setSend(true)
             setTaskInput('')
+
         }
-        
         return
     }
 
@@ -49,11 +61,8 @@ const TaskList = () => {
                             key={e.id}
                             setTask={setTask}
                             task={e.tarea}
-                            done = {e.done}
                             taskList={taskList}
                             setTaskList={setTaskList}
-                            check = {check}
-                            setCheck = {setCheck}
                         />
                     )
                 })}

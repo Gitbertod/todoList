@@ -1,13 +1,13 @@
-const CheckTask = ({check,setCheck}) => {
-    
-    
+const CheckTask = ({taskList,setTaskList}) => {
+
+    const handleComplete = () =>{
+        setTaskList(tareaCompletada)
+    }
     return (
         <div>
-           
             <input
                 type='checkbox'
-                value={check}
-                onChange={()=> handleCheck() }
+                onChange={()=>handleComplete}
             />
 
         </div>
